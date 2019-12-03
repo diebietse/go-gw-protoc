@@ -1,4 +1,4 @@
-FROM golang:1.12-stretch
+FROM golang:1.13.4-buster
 
 RUN apt-get update && apt-get install -y build-essential unzip
 
