@@ -13,8 +13,9 @@ RUN go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 RUN go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
 RUN go get -u github.com/golang/protobuf/protoc-gen-go
 
-RUN echo "alias protoc='protoc -I/usr/local/include -I/go/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis'" >> /root/.bashrc
+COPY go-gw-protoc /usr/local/bin/
+RUN chmod +x /usr/local/bin/go-gw-protoc
 
 WORKDIR /source
 
-ENTRYPOINT [ "protoc", "-I/usr/local/include", "-I/go/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis"]
+ENTRYPOINT [ "go-gw-protoc" ]
