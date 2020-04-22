@@ -12,6 +12,9 @@ RUN unzip protoc-3.11.4-linux-x86_64.zip -d protoc3 && \
 RUN go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 RUN go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
 RUN go get -u github.com/golang/protobuf/protoc-gen-go
+RUN go get -u github.com/gogo/protobuf/proto
+RUN go get -u github.com/gogo/protobuf/protoc-gen-gogofaster
+RUN go get -u github.com/gogo/protobuf/gogoproto
 
 COPY go-gw-protoc /usr/local/bin/
 RUN chmod +x /usr/local/bin/go-gw-protoc
