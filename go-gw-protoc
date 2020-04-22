@@ -4,4 +4,4 @@ if [ $# -eq 0 ]; then
   exit
 fi
 
-protoc -I/usr/local/include -I/go/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis "$@"
+protoc -I/usr/local/include -I/go/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis -I/go/src -I/go/src/github.com/gogo/protobuf/protobuf  "$@"

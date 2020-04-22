@@ -21,6 +21,20 @@ docker run -v ${PWD}:/source diebietse/go-gw-protoc -I. --go_out=plugins=grpc:. 
 
 To test it go to the [example folder][example], run `build.sh` and it will create `hello-world.pb.go` and `hello-world.pb.gw.go`
 
+To use gogofaster for source code generation use
+
+```bash
+docker run -v ${PWD}:/source diebietse/go-gw-protoc -I. --gogofaster_out=plugins=grpc:. --grpc-gateway_out=logtostderr=true:. hello-world.proto
+```
+
+Gogofaster can also be used to generate marshallers and unmarshallers as well as a host of other options. For an example of that run
+
+```bash
+docker run -v ${PWD}:/source diebietse/go-gw-protoc -I. --gogofaster_out=plugins=grpc:. --grpc-gateway_out=logtostderr=true:. hello-worldgogo.proto
+```
+
+See [https://github.com/gogo/protobuf](https://github.com/gogo/protobuf) for more information.
+
 [protobufs]: https://github.com/protocolbuffers/protobuf
 [grpc-gateway]: https://github.com/grpc-ecosystem/grpc-gateway
 [docker-hub]: https://hub.docker.com/r/diebietse/go-gw-protoc
