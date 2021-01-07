@@ -16,7 +16,7 @@ It is based on [golang:1.13-buster][golang] and adds all the packages needed for
 You can generate the gRPC and gRPC-gateway go source with:
 
 ```bash
-docker run -v ${PWD}:/source diebietse/go-gw-protoc -I. --go_out=plugins=grpc:. --grpc-gateway_out=logtostderr=true:. hello-world.proto
+docker run --rm -v ${PWD}:/source diebietse/go-gw-protoc -I. --go_out=plugins=grpc:. --grpc-gateway_out=logtostderr=true:. hello-world.proto
 ```
 
 To test it go to the [example folder][example], run `build.sh` and it will create `hello-world.pb.go` and `hello-world.pb.gw.go`
@@ -24,13 +24,22 @@ To test it go to the [example folder][example], run `build.sh` and it will creat
 To use gogofaster for source code generation use
 
 ```bash
-docker run -v ${PWD}:/source diebietse/go-gw-protoc -I. --gogofaster_out=plugins=grpc:. --grpc-gateway_out=logtostderr=true:. hello-world.proto
+docker run --rm -v ${PWD}:/source diebietse/go-gw-protoc -I. --gogofaster_out=plugins=grpc:. --grpc-gateway_out=logtostderr=true:. hello-world.proto
 ```
 
 Gogofaster can also be used to generate marshallers and unmarshallers as well as a host of other options. For an example of that run
 
 ```bash
-docker run -v ${PWD}:/source diebietse/go-gw-protoc -I. --gogofaster_out=plugins=grpc:. --grpc-gateway_out=logtostderr=true:. hello-worldgogo.proto
+docker run --rm -v ${PWD}:/source diebietse/go-gw-protoc -I. --gogofaster_out=plugins=grpc:. --grpc-gateway_out=logtostderr=true:. hello-worldgogo.proto
+```
+
+``` bash
+docker run --rm -v ${PWD}:/source diebietse/go-gw-protoc:latest \
+-I./ \
+-I/usr/local/include \
+--go_out=paths=source_relative,plugins=grpc:./ \
+--validate_out="lang=go:./" \
+hello-world-validate.proto
 ```
 
 See [https://github.com/gogo/protobuf](https://github.com/gogo/protobuf) for more information.
